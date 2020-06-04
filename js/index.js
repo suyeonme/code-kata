@@ -1,4 +1,4 @@
-/*  
+/*
 * Find Kim (June 3, 2020)
 *
 const solution = (city) => {
@@ -11,7 +11,8 @@ solution(seoul);
 */
 
 
-/*  
+
+/*
 * Average number (June 3, 2020)
 *
 const solution = arr => {
@@ -23,6 +24,10 @@ console.log('Average: ' + solution(arr));
 */
 
 
+
+/*
+* Find a person who doesn't complete a maraton (June 4, 2020)
+*
 const solution = (participant, completion) => {
     participant.sort();
     completion.sort();
@@ -36,3 +41,16 @@ solution(participant, completion);
 
 const participant = ['Suyeon', 'Hanna', 'Sarang', 'James'];
 const completion = ['Hanna', 'Sarang', 'James'];
+*/
+
+
+
+/* 
+* Names of the day of the week (June 4, 2020)
+*
+const getDayName = (month, day) => {
+    return new Date(2020, month - 1, day).toString().slice(0,3).toUpperCase();
+};
+
+getDayName(6, 4);
+*/
