@@ -195,3 +195,16 @@ solution(arr, [[2, 5, 3], [4, 4, 1], [1, 7, 3]]);
 
 // Return : [5, 6, 3]
 */
+
+
+/*
+* Repeated word (June 6, 2020)
+*
+const waterMelon = n => {
+    const word = '수박';
+
+    return console.log(word.repeat(n).slice(0,n));
+};
+
+waterMelon(4);
+*/
