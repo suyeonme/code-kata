@@ -200,11 +200,27 @@ solution(arr, [[2, 5, 3], [4, 4, 1], [1, 7, 3]]);
 /*
 * Repeated word (June 6, 2020)
 *
-const waterMelon = n => {
-    const word = '수박';
+const solution = n => {
+    const word = 'ab';
 
     return console.log(word.repeat(n).slice(0,n));
 };
 
-waterMelon(4);
+solution(4);
+*/
+
+
+/*
+*   Find the sum of all divisors of a given integer
+*
+const solution = n => {
+    let sum = 0;
+
+    for(let i = 1; i <= n; i++) {
+        if (n % i === 0) sum += i;
+    }
+    return sum;
+};
+
+solution(12);
 */
