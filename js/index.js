@@ -211,7 +211,7 @@ solution(4);
 
 
 /*
-*   Find the sum of all divisors of a given integer
+*   Find the sum of all divisors of a given integer (June 7, 2020)
 *
 const solution = n => {
     let sum = 0;
@@ -223,4 +223,15 @@ const solution = n => {
 };
 
 solution(12);
+*/
+
+
+/*
+*   Check s'length is 4 or 6 and it is only number.
+* 
+const solution = s => s.length !== 4 || s.length !== 6 && isNaN(parseInt(s)) ? false : true;
+
+solution('a123');
+solution('1234');
+solution('12345');
 */
