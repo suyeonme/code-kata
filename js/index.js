@@ -227,7 +227,7 @@ solution(12);
 
 
 /*
-*   Check s'length is 4 or 6 and it is only number.
+*   Check the argument's length is 4 or 6 and it is only number.
 * 
 const solution = s => s.length !== 4 || s.length !== 6 && isNaN(parseInt(s)) ? false : true;
 
@@ -235,3 +235,93 @@ solution('a123');
 solution('1234');
 solution('12345');
 */
+
+
+class Element {
+    constructor(name, buildYear) {
+        this.name = name;
+        this.buildYear = buildYear;
+    }
+};
+
+class Park extends Element{
+    constructor(name, buildYear, treeNum, area) {
+        super(name, buildYear);
+        this.treeNum = treeNum;
+        this.area = area
+    }
+
+    treeDensity() {
+        const treeDensity =  this.treeNum / this.area;
+        console.log(`${this.name} has a tree density of ${treeDensity} tress per square km`);
+    }
+}
+
+class Street extends Element {
+    constructor(name, buildYear, length, size = 3) {
+        super(name, buildYear);
+        this.length = length;
+        this.size = size;
+    }
+
+    classify () {
+        const classify = new Map();
+        classify.set(0, 'tiny');
+        classify.set(1, 'small');
+        classify.set(2, 'normal')
+        classify.set(3, 'big');
+        classify.set(4, 'huge');
+        console.log(`${this.name}, build ${this.buildYear}, is a ${classify.get(this.size)} street`);
+    }
+};
+
+const allParks = [
+    new Park('Green Park', 1990, 300, 200),
+    new Park('National Park', 2005, 2000, 500),
+    new Park('Oak Park', 1500, 500, 100)
+];
+
+const allStreets = [
+    new Street('Ocean Avenue', 1990, 500, 0),
+    new Street('Evergreen Street', 2005, 1000, 4),
+    new Street('Sunset Street', 1500, 100, 1),
+    new Street('Sunset Street', 1500, 100)
+];
+
+function calc(arr) {
+    const sum = arr.reduce((prev, cur) => prev + cur, 0);
+    return [sum, sum / arr.length];
+};
+
+function reportPark(p) {
+    console.log('------------ Park Report -------------');
+
+    // Tree density
+    allParks.forEach(el => el.treeDensity());
+
+    // Average Age
+    const ages = p.map(el => new Date().getFullYear() - el.buildYear);
+    const [totalAge, avgAge] = calc(ages);
+    console.log(`Our ${p.length} parks have an average age of ${avgAge} years.`);
+
+    // Which parks has more than 1000 trees
+    const i = p.map(el => el.treeNum).findIndex(el => el >= 1000);
+    console.log(`${p[i].name} has more than 1000 trees.`);
+};
+
+
+function reportStreet(s) {
+    console.log('------------ Street Report -------------');
+    
+    // Total and average length of the town's street
+    const [totalLength, avgLength] = calc(s.map(el => el.length));
+    console.log(`Our ${s.length} streets have a total length of ${totalLength} km, with an average length of${avgLength} km.`);
+
+    // Classify size
+    s.forEach(el => el.classify());
+};
+
+reportPark(allParks);
+reportStreet(allStreets);
+
+
