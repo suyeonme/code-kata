@@ -237,6 +237,9 @@ solution('12345');
 */
 
 
+/*
+*   Small report (June 8, 2020)
+*
 class Element {
     constructor(name, buildYear) {
         this.name = name;
@@ -323,5 +326,16 @@ function reportStreet(s) {
 
 reportPark(allParks);
 reportStreet(allStreets);
+*/
 
+
+/*
+* Count of 'p' and 'y' of String (June 9, 2020)
+*
+const solution = s => s.match(/p/ig).length == s.match(/y/ig).length;
+console.log(solution("pPoooyY"));
+
+const solution2 = s => s.toUpperCase().split('P').length === s.toUpperCase().split('Y').length;
+console.log(solution2("pPoooyY"));
+*/
 
