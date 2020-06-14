@@ -339,3 +339,19 @@ const solution2 = s => s.toUpperCase().split('P').length === s.toUpperCase().spl
 console.log(solution2("pPoooyY"));
 */
 
+
+/*
+* Divided array (June 14, 2020)
+*
+const solution = (arr, divisor) => {
+    let answer = [];
+    arr.map(cur => {
+        if (divisor > 0 && cur % divisor === 0) answer.push(cur);
+    });
+    return answer.length ? answer.sort((a, b) => a - b) : [-1];
+};
+
+console.log(solution([5, 9, 7, 10], 5));
+console.log(solution([2, 36, 1, 3], 1));
+console.log(solution([3,2,6], 10));
+*/
