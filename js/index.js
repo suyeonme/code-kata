@@ -341,7 +341,7 @@ console.log(solution2("pPoooyY"));
 
 
 /*
-* Divided array (June 14, 2020)
+* divisible numerical array (June 14, 2020)
 *
 const solution = (arr, divisor) => {
     let answer = [];
@@ -354,4 +354,15 @@ const solution = (arr, divisor) => {
 console.log(solution([5, 9, 7, 10], 5));
 console.log(solution([2, 36, 1, 3], 1));
 console.log(solution([3,2,6], 10));
+*/
+
+
+/*
+* Don't repeat the same number (June 15, 2020)
+*
+const solution = arr => {
+    console.log(arr.filter((cur, index) => cur != arr[index + 1]));
+};
+
+solution([1,1,3,3,0,1,1]);
 */
