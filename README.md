@@ -1,2 +1,3 @@
-# Algorithm-Js
-Practice problem-solving ability (in Programmers)
+# Code Kata 👊
+
+Practice problem-solving ability by code kata everyday!
