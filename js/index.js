@@ -1,9 +1,10 @@
-/* Dec 10, 2020
-How to reverse a number 
+/* Dec 11, 2020
+금지된 단어를 제외한 배열 반환하기
 */
 
-const reverse = nums => {
-  console.log(Number(nums.toString().split('').reverse().join('')));
-};
+const arr = ['banana', 'monkey banana', 'apple', 'kiwi', 'orange'];
+const prohibited = ['kiwi', 'apple'];
 
-reverse([12345]);
+const checker = el => !prohibited.some(p => p === el);
+
+arr.filter(checker);
