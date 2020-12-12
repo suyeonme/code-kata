@@ -1,25 +1,21 @@
 /* Dec 12, 2020
-strs은 단어가 담긴 배열입니다.
-공통된 시작 단어(prefix)를 반환해주세요.
+숫자로 이루어진 배열인 nums를 인자로 전달합니다.
+숫자중에서 과반수(majority, more than a half)가 넘은 숫자를 반환해주세요.
 
-strs = ['start', 'stair', 'step']
-return은 'st'
+nums = [2,2,1,1,1,2,2]
+return 2
 
-strs = ['start', 'wework', 'today']
-return은 ''
+nums 배열의 길이는 무조건 2개 이상입니다.
 */
 
-const arr = ['start', 'stair', 'step'];
+const nums = [2, 2, 1, 1, 1, 2, 2];
 
-const findPrefix = () => {
-  let prefix = '';
-  const test = arr[0];
-
-  for (let i = 0; i < test.length; i++) {
-    if (!arr.every(el => test[i] === el[i])) break;
-    prefix += test[i];
+const findMajority = arr => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr.filter(el => el === arr[i]).length > arr.length / 2) {
+      return arr[i];
+    }
   }
-  return prefix;
 };
 
-findPrefix(arr);
+findMajority(nums);
