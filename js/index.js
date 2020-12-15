@@ -7,52 +7,25 @@ Programmers 모의고사
 */
 
 function solution(answers) {
-  const answer = []; // 가장 많은 문제를 맞힌 사람
+  var answer = [];
+  var a1 = [1, 2, 3, 4, 5];
+  var a2 = [2, 1, 2, 3, 2, 4, 2, 5];
+  var a3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
 
-  let count = [0, 0, 0];
-  const p1 = [1, 2, 3, 4, 5];
-  const p2 = [2, 1, 2, 3, 2, 4, 2, 5];
-  const p3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+  var a1c = answers.filter((a, i) => a === a1[i % a1.length]).length;
+  var a2c = answers.filter((a, i) => a === a2[i % a2.length]).length;
+  var a3c = answers.filter((a, i) => a === a3[i % a3.length]).length;
+  var max = Math.max(a1c, a2c, a3c);
 
-  for (let i = 0; i < answers.length; i++) {
-    if (answers[i] === p1[i % p1.length]) {
-      count[0]++;
-    }
-    if (answers[i] === p2[i]) {
-      count[1]++;
-    }
-    if (answers[i] === p3[i]) {
-      count[2]++;
-    }
+  if (a1c === max) {
+    answer.push(1);
+  }
+  if (a2c === max) {
+    answer.push(2);
+  }
+  if (a3c === max) {
+    answer.push(3);
   }
 
-  for (let i = 0; i < count.length; i++) {
-    let max = Math.max(...count);
-    if (count[i] === max) {
-      answer.push(i + 1);
-    }
-  }
   return answer;
 }
-
-const answerArr = [1, 3, 2, 4, 2, 1, 3, 2, 4, 2, 1, 3, 2, 4, 2];
-solution(answerArr);
-
-/*
-(1): Modulus(Remainder)
-    0 % 5 === 0
-    1 % 5 === 1
-    2 % 5 === 2
-    4 % 2 === 0;
-
-(2): Math.max
-    Math.max(1, 3, 2)
-    Math.max(...array1)
-
-(3): p1[i % p1.length]
-    수포자의 배열이 정답 배열보다 짧은 경우, 올바른 index값을 얻을 수 있음 !!
-*/
-
-// answers = [1,2,3,4,5]
-// p1 = [1,2,3]
-// answers[4] === p1[4 % p1.length] -> p1[1]
