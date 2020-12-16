@@ -1,31 +1,39 @@
 /* Dec 15, 2020
-Programmers 모의고사
+Programmers K번째 수 
 
-1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, ...
-2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, ...
-3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
+배열 array의 i번째 숫자부터 j번째 숫자까지 자르고 정렬했을 때, k번째에 있는 수를 구하려 합니다.
+
+예를 들어 array가 [1, 5, 2, 6, 3, 7, 4], i = 2, j = 5, k = 3이라면
+
+array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다.
+1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다.
+2에서 나온 배열의 3번째 숫자는 5입니다.
 */
 
-function solution(answers) {
-  var answer = [];
-  var a1 = [1, 2, 3, 4, 5];
-  var a2 = [2, 1, 2, 3, 2, 4, 2, 5];
-  var a3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+const solution = (arr, com) => {
+  return com.map(c => {
+    return arr
+      .slice(c[0] - 1, c[1])
+      .sort((a, b) => a - b)
+      .slice(c[2] - 1, c[2])[0];
+  });
+};
 
-  var a1c = answers.filter((a, i) => a === a1[i % a1.length]).length;
-  var a2c = answers.filter((a, i) => a === a2[i % a2.length]).length;
-  var a3c = answers.filter((a, i) => a === a3[i % a3.length]).length;
-  var max = Math.max(a1c, a2c, a3c);
+const array = [1, 5, 2, 6, 3, 7, 4];
+const commands = [
+  [2, 5, 3],
+  [4, 4, 1],
+  [1, 7, 3],
+];
 
-  if (a1c === max) {
-    answer.push(1);
-  }
-  if (a2c === max) {
-    answer.push(2);
-  }
-  if (a3c === max) {
-    answer.push(3);
-  }
+solution(array, commands);
 
-  return answer;
-}
+/*
+  (1) slice(start, end)
+  const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+  animals.slice(2, 4); // ["camel", "duck"]
+
+  (2) splice(start, count)
+  const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+  animals.splice(2, 2); // ["camel", "duck"]
+*/
