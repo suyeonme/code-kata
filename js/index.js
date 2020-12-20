@@ -1,39 +1,47 @@
-/* Dec 15, 2020
-Programmers K번째 수 
-
-배열 array의 i번째 숫자부터 j번째 숫자까지 자르고 정렬했을 때, k번째에 있는 수를 구하려 합니다.
-
-예를 들어 array가 [1, 5, 2, 6, 3, 7, 4], i = 2, j = 5, k = 3이라면
-
-array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다.
-1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다.
-2에서 나온 배열의 3번째 숫자는 5입니다.
+/* Dec 16, 2020
+Programmers 체육복
 */
 
-const solution = (arr, com) => {
-  return com.map(c => {
-    return arr
-      .slice(c[0] - 1, c[1])
-      .sort((a, b) => a - b)
-      .slice(c[2] - 1, c[2])[0];
-  });
+const solution = (n, lost, reserve) => {
+  let answer = 0;
+  const trueLost = lost.filter((l, i) => l !== reserve[i]);
+  const trueReserve = reserve.filter((l, i) => l !== lost[i]);
+  let ans = [];
+
+  for (let i = 0; i <= n; i++) {
+    ans.push(1);
+  }
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 0; j < trueLost.length; j++) {
+      if (i === lost[j]) ans[i] = 0;
+    }
+    for (let j = 0; j < trueReserve.length; j++) {
+      if (i === reserve[j]) ans[i] += 1;
+    }
+  }
+
+  for (let i = 1; i <= n; i++) {
+    if (ans[i] === 0 && ans[i - 1] === 2) {
+      ans[i - 1] = 1;
+      ans[i] = 1;
+    } else if (ans[i] === 0 && ans[i + 1] === 2) {
+      ans[i + 1] = 1;
+      ans[i] = 1;
+    }
+  }
+
+  for (let i = 1; i <= n; i++) {
+    if (ans[i] > 0) answer++;
+  }
+
+  console.log(answer);
+  return answer;
 };
 
-const array = [1, 5, 2, 6, 3, 7, 4];
-const commands = [
-  [2, 5, 3],
-  [4, 4, 1],
-  [1, 7, 3],
-];
+const n = 5;
+const lost = [2, 4];
+const reserve = [1, 3, 5];
+solution(n, lost, reserve);
 
-solution(array, commands);
-
-/*
-  (1) slice(start, end)
-  const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-  animals.slice(2, 4); // ["camel", "duck"]
-
-  (2) splice(start, count)
-  const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-  animals.splice(2, 2); // ["camel", "duck"]
-*/
+// For loop (i)
