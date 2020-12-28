@@ -1,24 +1,16 @@
 /* 
-Programmers 같은 숫자는 싫어
+Programmers 나누어 떨어지는 숫자 배열
 
-배열 arr가 주어집니다. 배열 arr의 각 원소는 숫자 0부터 9까지로 이루어져 있습니다.
-이때, 배열 arr에서 연속적으로 나타나는 숫자는 하나만 남기고 전부 제거하려고 합니다.
-단, 제거된 후 남은 수들을 반환할 때는 배열 arr의 원소들의 순서를 유지해야 합니다.
-
-예를 들면,
-arr = [1, 1, 3, 3, 0, 1, 1] 이면 [1, 3, 0, 1] 을 return 합니다.
-arr = [4, 4, 4, 3, 3] 이면 [4, 3] 을 return 합니다.
-배열 arr에서 연속적으로 나타나는 숫자는 제거하고 남은 수들을 return 하는 solution 함수를 완성해 주세요.
+array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요.
+divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요.
 */
 
-function solution(arr) {
-  return arr.filter((el, i) => el !== arr[i + 1]);
+function solution(arr, divisor) {
+  let answer = [];
+  answer = arr.filter(el => el % divisor === 0);
+  return answer.length === 0 ? [-1] : answer.sort((a, b) => a - b);
 }
 
-const nums = [4, 4, 4, 3, 3];
-solution(nums);
-
-/* Remove duplicate value
-  (1) arr = [...new Set(arr)];
-  (2) arr = arr.filter ((value, index, array) => array.indexOf (value) == index);
-*/
+const arr = [2, 36, 1, 3];
+const divisor = 1;
+solution(arr, divisor);
