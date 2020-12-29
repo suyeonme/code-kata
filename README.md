@@ -1,3 +1,3 @@
 # Code Kata 🥷
 
-Practice problem-solving ability by code kata everyday!
+Build problem-solving ability by doing code kata everyday!
