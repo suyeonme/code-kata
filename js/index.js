@@ -1,36 +1,28 @@
 /* 
-Programmers 두 정수 사이의 합
+Programmers 문자열 내 마음대로 정렬하기
 
-두 정수 a, b가 주어졌을 때 a와 b 사이에 속한 모든 정수의 합을 리턴하는 함수, solution을 완성하세요.
-예를 들어 a = 3, b = 5인 경우, 3 + 4 + 5 = 12이므로 12를 리턴합니다.
+문자열로 구성된 리스트 strings와, 정수 n이 주어졌을 때, 각 문자열의 인덱스 n번째 글자를 기준으로 오름차순 정렬하려 합니다. 
+예를 들어 strings가 [sun, bed, car]이고 n이 1이면 각 단어의 인덱스 1의 문자 u, e, a로 strings를 정렬합니다.
 
-a와 b가 같은 경우는 둘 중 아무 수나 리턴하세요.
+  strings: [sun, bed, car]
+  n: 1
+  return: [car, bed, sun]
 */
 
-function solution(a, b) {
-  let answer = 0;
-
-  for (let i = Math.min(a, b); i <= Math.max(a, b); i++) answer += i;
-  return answer;
+function solution(strings, n) {
+  return strings.sort((a, b) => {
+    if (a[n] > b[n]) return 1;
+    if (a[n] < b[n]) return -1;
+    if (a[n] === b[n]) return a.localeCompare(b);
+  });
 }
 
-// function solution(a, b) {
-//   let answer = 0;
+const strArr = ['sun', 'bed', 'car'];
+const index = 1;
+solution(strArr, index);
 
-//   if (a == b) {
-//     answer = a;
-//   } else if (a < b) {
-//     for (let i = a; i <= b; i++) {
-//       answer += i;
-//     }
-//   } else if (a > b) {
-//     for (let i = b; i <= a; i++) {
-//       answer += i;
-//     }
-//   }
-
-//   console.log(answer);
-//   return answer;
-// }
-
-solution(3, 5);
+/*
+(1) Descending order: arr.sort().reverse()
+(2) sort()
+(3) str.localeCompare(compareStr)
+*/
