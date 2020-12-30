@@ -1,28 +1,21 @@
 /* 
-Programmers 문자열 내 마음대로 정렬하기
+Programmers 문자열 내 p와 y의 개수
 
-문자열로 구성된 리스트 strings와, 정수 n이 주어졌을 때, 각 문자열의 인덱스 n번째 글자를 기준으로 오름차순 정렬하려 합니다. 
-예를 들어 strings가 [sun, bed, car]이고 n이 1이면 각 단어의 인덱스 1의 문자 u, e, a로 strings를 정렬합니다.
-
-  strings: [sun, bed, car]
-  n: 1
-  return: [car, bed, sun]
+대문자와 소문자가 섞여있는 문자열 s가 주어집니다. 
+s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요. 
+'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다. 
+단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다.
 */
 
-function solution(strings, n) {
-  return strings.sort((a, b) => {
-    if (a[n] > b[n]) return 1;
-    if (a[n] < b[n]) return -1;
-    if (a[n] === b[n]) return a.localeCompare(b);
-  });
+function solution(s) {
+  return s.match(/p/gi)?.length === s.match(/y/gi)?.length;
 }
 
-const strArr = ['sun', 'bed', 'car'];
-const index = 1;
-solution(strArr, index);
+function solution2(s) {
+  return (
+    s.toUpperCase().split('P').length === s.toUpperCase().split('Y').length
+  );
+}
 
-/*
-(1) Descending order: arr.sort().reverse()
-(2) sort()
-(3) str.localeCompare(compareStr)
-*/
+const str = 'Pyy';
+solution(str);
