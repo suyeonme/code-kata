@@ -1,18 +1,15 @@
 /* 
-Programmers 문자열 다루기 기본
+Programmers 소수 찾기
 
-문자열 s의 길이가 4 혹은 6이고, 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요.
-예를 들어 s가 a234이면 False를 리턴하고 1234라면 True를 리턴하면 됩니다.
+길이가 n이고, 수박수박수박수....와 같은 패턴을 유지하는 문자열을 리턴하는 함수, solution을 완성하세요. 
+예를들어 n이 4이면 수박수박을 리턴하고 3이라면 수박수를 리턴하면 됩니다.
+
+n:3 -> 수박수
+n:4 -> 수박수박
 */
 
-function solution(s) {
-  return (s.length === 4 || s.length === 6) && s.match(/[A-Z]/gi)?.length > 0
-    ? false
-    : true;
-}
-
-function solution2(s) {
-  return (s.length == 4 || s.length == 6) && isNaN(s) == false ? true : false;
-}
-
-solution('1234');
+const solution = n => {
+  let word = '수박';
+  return word.repeat(n).slice(0, n);
+};
+solution(3);
