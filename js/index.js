@@ -1,22 +1,17 @@
 /* 
-Programmers 약수의 합
+Programmers 자릿수 더하기
 
-정수 n을 입력받아 n의 약수를 모두 더한 값을 리턴하는 함수, solution을 완성해주세요.
+자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.
+예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.
 
-12 -> 	28
-5	-> 6
+123 -> 	6
+987	-> 24
 */
 
 function solution(n) {
-  let answers = 0;
-
-  for (let i = 1; i <= n; i++) {
-    if (n % i === 0) {
-      answers = answers + i;
-    }
-  }
-  return answers;
+  return String(n)
+    .split('')
+    .reduce((acc, cur) => acc + +cur, 0);
 }
 
-solution(5);
-// 1 5
+solution(123);
