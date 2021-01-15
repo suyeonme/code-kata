@@ -1,17 +1,13 @@
 /* 
-Programmers 자릿수 더하기
+Programmers 자연수 뒤집어 배열로 만들기
 
-자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.
-예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.
-
-123 -> 	6
-987	-> 24
+자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요.
+예를들어 n이 12345이면 [5,4,3,2,1]을 리턴합니다.
 */
 
 function solution(n) {
-  return String(n)
-    .split('')
-    .reduce((acc, cur) => acc + +cur, 0);
+  const reversed = n.toString().split('').reverse();
+  return reversed.map(s => +s);
 }
 
-solution(123);
+solution(12345);
