@@ -1,23 +1,21 @@
 /* 
-Programmers 정수 제곱근 판별
+Programmers 제일 작은 수 제거하기
 
-임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다.
-n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.
+정수를 저장한 배열, arr 에서 가장 작은 수를 제거한 배열을 리턴하는 함수, solution을 완성해주세요. 
+단, 리턴하려는 배열이 빈 배열인 경우엔 배열에 -1을 채워 리턴하세요. 
+예를들어 arr이 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10]면 [-1]을 리턴 합니다.
 
-121 -> 144
-3 -> -1
+[4,3,2,1] -> [4,3,2]
+[10] -> [-1]
 
 */
 
-function solution(n) {
-  let x = Math.sqrt(n);
-  return Number.isInteger(x) ? Math.pow(x + 1, 2) : -1;
+function solution(arr) {
+  const minNum = Math.min(...arr);
+  let answer = arr.filter(n => n !== minNum);
+  return answer.length < 1 ? [-1] : answer;
 }
 
-solution(121);
-
-/*
-  (1) Math.sqrt(n): Returns the square root of a number.
-  (2) Math.pow(base, exponent): Returns the base to the exponent power.
-  (3) Number.isInteger(n): Determines whether the passed value is an integer.
-*/
+// const numArr = [4, 3, 2, 1];
+const numArr = [10];
+solution(numArr);
