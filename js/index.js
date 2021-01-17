@@ -1,31 +1,30 @@
 /* 
-Programmers 콜라츠 추측
+Programmers 핸드폰 번호 가리기
 
-1937년 Collatz란 사람에 의해 제기된 이 추측은, 주어진 수가 1이 될때까지 다음 작업을 반복하면, 모든 수를 1로 만들 수 있다는 추측입니다. 
-1-1. 입력된 수가 짝수라면 2로 나눕니다. 
-1-2. 입력된 수가 홀수라면 3을 곱하고 1을 더합니다.
-2. 결과로 나온 수에 같은 작업을 1이 될 때까지 반복합니다.
+프로그래머스 모바일은 개인정보 보호를 위해 고지서를 보낼 때 고객들의 전화번호의 일부를 가립니다.
+전화번호가 문자열 phone_number로 주어졌을 때, 전화번호의 뒷 4자리를 제외한 나머지 숫자를 전부 *으로 가린 문자열을 리턴하는 함수, solution을 완성해주세요.
 
-예를 들어, 입력된 수가 6이라면 6→3→10→5→16→8→4→2→1 이 되어 총 8번 만에 1이 됩니다. 
-위 작업을 몇 번이나 반복해야하는지 반환하는 함수, solution을 완성해 주세요. 
-단, 작업을 500번을 반복해도 1이 되지 않는다면 –1을 반환해 주세요.
-
-6 -> 8
-16 -> 4
-626331 -> -1
+"01033334444" -> "*******4444"
+"027778888" -> "*****8888"
 */
 
-function solution(n) {
-  let answer = 0;
-
-  const calc = n => {
-    if (n === 1) return;
-    answer++;
-    return n % 2 === 0 ? calc(n / 2) : calc(n * 3 + 1);
-  };
-
-  calc(n);
-  return answer > 500 ? -1 : answer;
+function solution1(str) {
+  return '*'.repeat(str.length - 4) + str.slice(-4);
 }
 
-solution(626331);
+function solution2(str) {
+  return str
+    .split('')
+    .map((s, i) => {
+      if (i < str.length - 4) s = '*';
+      return s;
+    })
+    .join('');
+}
+
+solution1('01033334444');
+
+/*
+  (1) slice()
+  A negative index can be used, indicating an offset from the end of the sequence. 
+*/
