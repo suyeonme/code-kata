@@ -1,39 +1,30 @@
 /* 
-Programmers 행렬의 덧셈
+Programmers x만큼 간격이 있는 n개의 숫자
 
-행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 열의 값을 서로 더한 결과가 됩니다. 
-2개의 행렬 arr1과 arr2를 입력받아, 행렬 덧셈의 결과를 반환하는 함수, solution을 완성해주세요.
+함수 solution은 정수 x와 자연수 n을 입력 받아, x부터 시작해 x씩 증가하는 숫자를 n개 지니는 리스트를 리턴해야 합니다. 
+다음 제한 조건을 보고, 조건을 만족하는 함수, solution을 완성해주세요.
 
-[[1,2],[2,3]], [[3,4],[5,6]] --> [[4,6],[7,9]]
-[[1],[2]], [[3],[4]] --> [[4],[6]]
+2, 5 -> [2,4,6,8,10]
+4, 3 ->	[4,8,12]
+-4, 2 ->	[-4, -8]
 */
 
-function solution1(arr1, arr2) {
+function solution1(num1, num2) {
   let answer = [];
+  let temp = 0;
 
-  for (let i = 0; i < arr1.length; i++) {
-    let temp = [];
-    for (let j = 0; j < arr1[i].length; j++) {
-      temp.push(arr1[i][j] + arr2[i][j]);
-    }
+  for (let i = 0; i < num2; i++) {
+    temp += num1;
     answer.push(temp);
   }
   return answer;
 }
 
-function solution2(arr1, arr2) {
-  return arr1.map((_, i) => arr2[i].map((_, j) => arr1[i][j] + arr2[i][j]));
+function solution2(num1, num2) {
+  return Array(num2)
+    .fill(num1)
+    .map((n, i) => (i + 1) * n);
 }
 
-const arr1 = [
-  [1, 2],
-  [2, 3],
-];
-const arr2 = [
-  [3, 4],
-  [5, 6],
-];
-solution1(arr1, arr2);
-solution2(arr1, arr2);
-
-// [[4,6],[7,9]]
+solution1(-4, 2);
+solution2(-4, 2);
