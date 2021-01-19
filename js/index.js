@@ -1,30 +1,21 @@
 /* 
-Programmers 핸드폰 번호 가리기
+Programmers 하샤드 수
 
-프로그래머스 모바일은 개인정보 보호를 위해 고지서를 보낼 때 고객들의 전화번호의 일부를 가립니다.
-전화번호가 문자열 phone_number로 주어졌을 때, 전화번호의 뒷 4자리를 제외한 나머지 숫자를 전부 *으로 가린 문자열을 리턴하는 함수, solution을 완성해주세요.
+양의 정수 x가 하샤드 수이려면 x의 자릿수의 합으로 x가 나누어져야 합니다. 
+예를 들어 18의 자릿수 합은 1+8=9이고, 18은 9로 나누어 떨어지므로 18은 하샤드 수입니다. 
+자연수 x를 입력받아 x가 하샤드 수인지 아닌지 검사하는 함수, solution을 완성해주세요.
 
-"01033334444" -> "*******4444"
-"027778888" -> "*****8888"
+10 -> true
+11 -> false
 */
 
-function solution1(str) {
-  return '*'.repeat(str.length - 4) + str.slice(-4);
-}
-
-function solution2(str) {
-  return str
+function solution(n) {
+  const sum = n
+    .toString()
     .split('')
-    .map((s, i) => {
-      if (i < str.length - 4) s = '*';
-      return s;
-    })
-    .join('');
+    .reduce((acc, cur) => (acc += +cur), 0);
+
+  return n % sum === 0 ? true : false;
 }
 
-solution1('01033334444');
-
-/*
-  (1) slice()
-  A negative index can be used, indicating an offset from the end of the sequence. 
-*/
+solution(18);
