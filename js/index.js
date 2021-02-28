@@ -1,29 +1,23 @@
 /*
-Anagram
+SumZero: Two pointer pattern
 */
 
-function validAnagram(word1, word2) {
-  if (word1.length !== word2.length) {
-    return false;
-  }
+function sumZero(array) {
+  let left = 0;
+  let right = array.length - 1;
 
-  let lookup = {};
-  for (let i = 0; i < word1.length; i++) {
-    let letter = word1[i];
-    lookup[letter] = lookup[letter] ? ++lookup[letter] : 1;
-  }
+  while (left < right) {
+    const sum = array[left] + array[right];
 
-  for (let i = 0; i < word2.length; i++) {
-    let letter = word2[i];
-    if (!lookup[letter]) {
-      return false;
+    if (sum === 0) {
+      return [array[left], array[right]];
+    } else if (sum > 0) {
+      right--;
     } else {
-      lookup[letter] -= 1;
+      left++;
     }
   }
-
-  return true;
 }
 
-validAnagram('cinema', 'iceman');
-validAnagram('aaz', 'zza');
+const arr = [-3, -2, -1, 0, 1, 4, 5];
+sumZero(arr);
