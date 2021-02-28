@@ -1,23 +1,26 @@
 /*
-SumZero: Two pointer pattern
+countUniqueValue: Multiple pointer pattern
 */
 
-function sumZero(array) {
-  let left = 0;
-  let right = array.length - 1;
+// My solution
+// function countUniqueValue(arr) {
+//   arr.sort();
+//   let answer = [];
+//   for (value of new Set(arr)) {
+//     answer.push(value);
+//   }
+//   return answer.length;
+// }
 
-  while (left < right) {
-    const sum = array[left] + array[right];
-
-    if (sum === 0) {
-      return [array[left], array[right]];
-    } else if (sum > 0) {
-      right--;
-    } else {
-      left++;
+function countUniqueValue(arr) {
+  let i = 0;
+  for (let j = 1; j < arr.length; j++) {
+    if (arr[i] !== arr[j]) {
+      i++;
+      arr[i] = arr[j];
     }
   }
+  return i + 1;
 }
 
-const arr = [-3, -2, -1, 0, 1, 4, 5];
-sumZero(arr);
+countUniqueValue([1, 1, 2, 3, 4, 4, 5, 5, 5, 7]);
