@@ -1,46 +1,26 @@
-/*
-Sliding window
-*/
+// Solution 1
+function sameFrequency(num1, num2) {
+  const strNum1 = num1.toString();
+  const strNum2 = num2.toString();
 
-// function maxSubarraySum(arr, n) {
-//   if (arr.length < n) return null;
-
-//   let max = -Infinity;
-
-//   for (let i = 0; i < arr.length - n + 1; i++) {
-//     let temp = 0;
-//     for (let j = 0; j < n; j++) {
-//       temp += arr[i + j];
-//     }
-//     if (temp > max) {
-//       max = temp;
-//     }
-//   }
-//   console.log(max);
-//   return max;
-// }
-
-// Better Solution
-function maxSubarraySum(arr, num) {
-  let maxSum = 0;
-  let tempSum = 0;
-
-  if (arr.length < num) {
-    return null;
+  if (strNum1.length !== strNum2.length) {
+    return false;
   }
 
-  for (let i = 0; i < num; i++) {
-    maxSum += arr[i];
+  const obj1 = {};
+  const obj2 = {};
+
+  for (let key of strNum1) {
+    obj1[key] = obj1[key] ? ++obj1[key] : 1;
+  }
+  for (let key of strNum2) {
+    obj2[key] = obj2[key] ? ++obj2[key] : 1;
   }
 
-  tempSum = maxSum;
-
-  for (let i = num; i < arr.length; i++) {
-    tempSum = tempSum - arr[i - num] + arr[i];
-    maxSum = Math.max(maxSum, tempSum);
+  for (let key in obj1) {
+    if (obj1[key] !== obj2[key]) {
+      return false;
+    }
   }
-  console.log(maxSum);
-  return maxSum;
+  return true;
 }
-
-maxSubarraySum([2, 6, 9, 2, 1, 8, 5, 6, 3], 3);
