@@ -1,26 +1,19 @@
-// Solution 1
-function sameFrequency(num1, num2) {
-  const strNum1 = num1.toString();
-  const strNum2 = num2.toString();
+// Multiple Pointer
+const averagePairFunc = (arr, avg) => {
+  let left = 0;
+  let right = arr.length - 1;
 
-  if (strNum1.length !== strNum2.length) {
-    return false;
-  }
-
-  const obj1 = {};
-  const obj2 = {};
-
-  for (let key of strNum1) {
-    obj1[key] = obj1[key] ? ++obj1[key] : 1;
-  }
-  for (let key of strNum2) {
-    obj2[key] = obj2[key] ? ++obj2[key] : 1;
-  }
-
-  for (let key in obj1) {
-    if (obj1[key] !== obj2[key]) {
-      return false;
+  while (left < right) {
+    let math = (arr[left] + arr[right]) / 2;
+    if (math === avg) {
+      console.log(arr[left], arr[right]);
+      return true;
+    } else if (math > 0) {
+      right--;
+    } else if (math < 0) {
+      left++;
     }
   }
-  return true;
-}
+};
+
+averagePairFunc([1, 2, 3, 4, 5], 2.5);
