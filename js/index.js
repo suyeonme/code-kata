@@ -1,19 +1,19 @@
-// Multiple Pointer
-const averagePairFunc = (arr, avg) => {
-  let left = 0;
-  let right = arr.length - 1;
+// Recursion
+// base case is so important!
 
-  while (left < right) {
-    let math = (arr[left] + arr[right]) / 2;
-    if (math === avg) {
-      console.log(arr[left], arr[right]);
-      return true;
-    } else if (math > 0) {
-      right--;
-    } else if (math < 0) {
-      left++;
-    }
-  }
-};
+function power(base, exp) {
+  if (exp === 0) return 1;
+  if (exp === 1) return base;
+  return base * power(base, exp - 1);
+}
 
-averagePairFunc([1, 2, 3, 4, 5], 2.5);
+function factorial(num) {
+  if (num === 0) return 1;
+  if (num === 1) return num;
+  return num * factorial(num - 1);
+}
+
+function productOfArray(arr) {
+  if (!arr.length) return 1;
+  return arr[0] * productOfArray(arr.slice(1));
+}
