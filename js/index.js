@@ -1,28 +1,23 @@
-/* Sorting: Bubble Sort
- * isNoSwap: It prevent an unnecessary loop if an array is nearly sorted. (optimization)
- * Time Complexity: O(n²)
+/* Sorting: Selection Sort
+ *
  */
 
-const bubbleSort = arr => {
-  let isNoSwap;
+const selectionSort = arr => {
   const swap = (arr, idx1, idx2) => {
-    [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+    return ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
   };
 
-  for (let i = arr.length; i > 0; i--) {
-    let isNoSwap = false;
-    for (let j = 0; j < i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
-        // [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-        swap(arr, j, j + 1);
-        let isNoSwap = true;
+  for (let i = 0; i < arr.length; i++) {
+    let lowest = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[lowest]) {
+        lowest = j;
       }
+      if (i !== lowest) swap(arr, i, lowest);
     }
-
-    if (isNoSwap) break;
   }
-  console.log(arr);
+
   return arr;
 };
 
-bubbleSort([1, 6, 3, 2, 10, 8]);
+selectionSort([0, 1, 6, 3, 2, 10, 8]);
