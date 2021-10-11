@@ -1,23 +1,17 @@
-/* Sorting: Selection Sort
- *
- */
+/* Sorting: Insertion Sort */
 
-const selectionSort = arr => {
-  const swap = (arr, idx1, idx2) => {
-    return ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
-  };
-
+const insertionSort = arr => {
   for (let i = 0; i < arr.length; i++) {
-    let lowest = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] < arr[lowest]) {
-        lowest = j;
-      }
-      if (i !== lowest) swap(arr, i, lowest);
-    }
-  }
+    let current = arr[i];
+    let j;
 
+    for (j = i - 1; j >= 0 && arr[j] > current; j--) {
+      arr[j + 1] = arr[j]; // j == 0
+    }
+
+    arr[j + 1] = current; // j == -1
+  }
   return arr;
 };
 
-selectionSort([0, 1, 6, 3, 2, 10, 8]);
+insertionSort([2, 1, 4, 6, 0, 10]);
