@@ -1,19 +1,48 @@
 /**
- * 백준 1712번
- * 손익분기점
- * 입력: 첫째 줄에 A, B, C가 빈 칸을 사이에 두고 순서대로 주어진다. A, B, C는 21억 이하의 자연수이다.
- * 출력: 첫 번째 줄에 손익분기점 즉 최초로 이익이 발생하는 판매량을 출력한다. 손익분기점이 존재하지 않으면 -1을 출력한다.
- * 
- * 해결:
- * 손익분기점 = 고정비용 / (제품 가격 - 가변 비용)
- * C-B가 0 이하면 손익분기점은 없음
+ * 백준 2839번
+ * 설탕 배달
+ * 입력: 첫째 줄에 N이 주어진다. (3 ≤ N ≤ 5000)
+ * 출력: 상근이가 배달하는 봉지의 최소 개수를 출력한다. 만약, 정확하게 N킬로그램을 만들 수 없다면 -1을 출력한다.
+ *
+ * 문제 유형: DP
  */
 
-const getBreakEvenPoint = price => {
-  [A, B, C] = price.split(' ').map(p => +p);
-  const margin = Math.floor(A / (C - B)) + 1;
-  return margin < 0 ? -1 : margin;
-};
+let fs = require('fs');
+let input = fs.readFileSync('/dev/stdin').toString();
+let N = Number(input);
 
-console.log(getBreakEvenPoint('3 2 1'));
+// 풀이 1: 큰수부터 제거
+// let five = Math.floor(n / 5);
+// while (five >= 0) {
+//   if (n / five === 0) {
+//     console.log(five);
+//     break;
+//   }
 
+//   let remainder = n - five * 5;
+//   if (remainder >= 0 && remainder % 3 === 0) {
+//     console.log(five + remainder / 3);
+//     break;
+//   }
+//   five -= 1;
+// }
+
+// 풀이 2: 작은수부터 제거
+let five = 0;
+let three = 0;
+
+while (true) {
+  if (N % 5 === 0) {
+    five = N / 5;
+    console.log(five + three);
+    break;
+  }
+  if (N < 0) {
+    console.log(-1);
+    break;
+  }
+  N = N - 3;
+  three++;
+}
+
+console.log(getMinimumSugarPack(11));
