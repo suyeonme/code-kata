@@ -19,7 +19,7 @@ const quick_sort = (arr, start, end) => {
       j--;
     }
     if (i > j) {
-      // 엇갈렸다면 왼쪽 값과 피벗을 교체
+      // 엇갈렸다면 왼쪽값과 피벗을 교체
       temp = arr[j];
       arr[j] = arr[pivot];
       arr[pivot] = temp;

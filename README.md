@@ -8,7 +8,9 @@ Grow problem-solving ability by doing code kata everyday!
 - [BaekJoon](https://www.acmicpc.net/)
 - [leetcode](https://leetcode.com/)
 
-### algorithms
+### Algorithms
 - selection sort
 - bubble sort
 - insertion sort
+- quick sort
+- merge sort
