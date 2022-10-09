@@ -7,3 +7,8 @@ Grow problem-solving ability by doing code kata everyday!
 - [programmers](https://programmers.co.kr/learn/challenges?tab=all_challenges)
 - [BaekJoon](https://www.acmicpc.net/)
 - [leetcode](https://leetcode.com/)
+
+### algorithms
+- selection sort
+- bubble sort
+- insertion sort

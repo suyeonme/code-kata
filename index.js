@@ -12,7 +12,10 @@ const input = require('fs').readFileSync('./example.txt').toString();
 
 const num = Number(input);
 
-const DP = new Array(num + 1).fill(0);
+const DP = new Array(num + 1).fill(0); // 10
+// 1 2 3 4 5 6 7 8 ...
+
+// 2 4 6
 
 for (let i = 2; i <= num; i++) {
   DP[i] = DP[i - 1] + 1;
@@ -28,3 +31,9 @@ for (let i = 2; i <= num; i++) {
 
 console.log(DP)
 console.log(DP[num]);
+
+/**
+ * DP 조건
+ * 점화식
+ * bottom up / top down
+ */
