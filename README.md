@@ -14,3 +14,4 @@ Grow problem-solving ability by doing code kata everyday!
 - insertion sort
 - quick sort
 - merge sort
+- counting sort
