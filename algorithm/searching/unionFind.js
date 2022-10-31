@@ -42,3 +42,9 @@ unionParent(parent, 7, 8);
 
 // 3. 1과 5가 연결되어있는지 확인
 console.log(findParent(parent, 1, 5));
+
+module.exports = {
+  getParent,
+  unionParent,
+  findParent,
+};

@@ -1,4 +1,4 @@
-import Graph from '../../data structure/graph';
+const Graph = require('../../data structure/graph');
 
 const graph = new Graph(8);
 
@@ -35,3 +35,4 @@ const bfs = start => {
 };
 
 bfs(1);
+
