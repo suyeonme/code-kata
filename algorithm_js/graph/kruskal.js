@@ -1,10 +1,5 @@
 const { findParent, unionParent } = require('./unionFind');
-class Edge {
-  constructor(v1, v2, weight) {
-    this.edge = [v1, v2];
-    this.weight = weight;
-  }
-}
+const { Edge } = require('../utils');
 
 const matrix = [];
 
