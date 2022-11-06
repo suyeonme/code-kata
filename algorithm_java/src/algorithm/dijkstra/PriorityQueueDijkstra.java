@@ -63,16 +63,14 @@ class PriorityQueueDijkstra {
         }
 
         while (!queue.isEmpty()) {
-            int min = Integer.MAX_VALUE;
             int min_index = -1;
 
             // 노드 최소값을 꺼냄
             Node node = queue.poll();
-            min = node.weight;
             min_index = node.index;
+            visited[min_index] = true;
 
             // 노드 최소값 탐색
-            visited[min_index] = true;
             for (int i = 0; i < n; ++i) {
                 if (!visited[i] && matrix[min_index][i] != Integer.MAX_VALUE) {
                     if (distance[min_index] + matrix[min_index][i] < distance[i]) {
@@ -84,8 +82,11 @@ class PriorityQueueDijkstra {
 
             // 결과값 출력
             for (int i = 0; i < n; ++i) {
-                if (distance[i] == 2147483647) System.out.print("∞ ");
-                else System.out.print(distance[i] + " ");
+                if (distance[i] == 2147483647) {
+                    System.out.print("∞ ");
+                } else {
+                    System.out.print(distance[i] + " ");
+                }
             }
             System.out.println("");
         }

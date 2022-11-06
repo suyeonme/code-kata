@@ -4,8 +4,8 @@ package algorithm.dijkstra;
 public class Dijkstra {
     public static void main(String[] args) {
 
-//        AdjacentListDijkstra graph = new AdjacentListDijkstra(6);
-        PriorityQueueDijkstra graph = new PriorityQueueDijkstra(6);
+        AdjacentListDijkstra graph = new AdjacentListDijkstra(6);
+//        PriorityQueueDijkstra graph = new PriorityQueueDijkstra(6);
 
         graph.addNode(0, 1, 7);
         graph.addNode(0, 2, 9);

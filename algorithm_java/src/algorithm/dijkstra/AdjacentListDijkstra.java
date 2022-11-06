@@ -1,5 +1,7 @@
 package algorithm.dijkstra;
 
+import java.util.Arrays;
+
 class AdjacentListDijkstra {
     private int n;           // 노드들의 수
     private int matrix[][];    // 노드들간의 가중치
@@ -65,11 +67,14 @@ class AdjacentListDijkstra {
             }
 
             // 결과값 출력
-            for (int i = 0; i < n; ++i) {
-                if (distance[i] == 2147483647) System.out.print("∞ ");
-                else System.out.print(distance[i] + " ");
-            }
-            System.out.println("");
+//            for (int i = 0; i < n; ++i) {
+//                if (distance[i] == Integer.MAX_VALUE) System.out.print("∞ ");
+//                else System.out.print(distance[i] + " ");
+//            }
+
+
+//            System.out.println("");
         }
+        System.out.println(Arrays.toString(distance));
     }
 }
