@@ -1,94 +1,89 @@
 package algorithm.dijkstra;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
-class PriorityQueueDijkstra {
-    private int n;           // 노드들의 수
-    private int matrix[][];    // 노드들간의 가중치
+// 우선 순위 큐를 사용
+public class PriorityQueueDijkstra {
 
-    public PriorityQueueDijkstra(int n) {
-        this.n = n;
-        matrix = new int[n][n];
+    static final int INF = 9999999; // 무한대
 
-        // 인접행렬을 무한대로 초기화
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                matrix[i][j] = Integer.MAX_VALUE;
-            }
-        }
-    }
+    static class Node implements Comparable<AdjacentListDijkstra.Node> {
+        int to, weight;
 
-    class Node implements Comparable<Node> {
-        private int weight;
-        private int index;
-
-        public Node(int weight, int index) {
+        public Node(int to, int weight) {
+            this.to = to;
             this.weight = weight;
-            this.index = index;
         }
 
         @Override
-        public int compareTo(Node node) {
-            // 우선순위 큐의 기준을 가중치로 제공
-            return Integer.compare(this.weight, node.weight);
+        public int compareTo(AdjacentListDijkstra.Node o) {
+            return this.weight - o.weight;
         }
     }
 
-    public void addNode(int v1, int v2, int weight) {
-        matrix[v1][v2] = weight;
-        matrix[v2][v1] = weight;
-    }
+    public static void main(String[] args) {
+        int V = 5;  // 정점의 수
+        int E = 6;  // 간선의 수
 
-    public void dijkstra(int v) {
-        PriorityQueue<Node> queue = new PriorityQueue<>();     // 노드까지의 거리를 저장할 우선순위 큐
-        int distance[] = new int[n];          // 최단 거리를 저장
-        boolean[] visited = new boolean[n];      // 해당 노드 방문 여부 저장
-
-        // 최단 거리 초기화
-        for (int i = 0; i < n; ++i) {
-            distance[i] = Integer.MAX_VALUE;
+        // 인접리스트 초기화
+        ArrayList<ArrayList<Node>> adjList = new ArrayList<>();
+        for (int i = 0; i <= V; i++) {
+            adjList.add(new ArrayList<>());
         }
 
-        // 시작노드 값 초기화
-        queue.add(new Node(v, 0));
-        distance[v] = 0;
-        visited[v] = true;
+        // 인접리스트 입력
+        adjList.get(5).add(new Node(1, 1));
+        adjList.get(1).add(new Node(5, 1));
+
+        adjList.get(1).add(new Node(2, 2));
+        adjList.get(2).add(new Node(1, 2));
+
+        adjList.get(1).add(new Node(3, 3));
+        adjList.get(3).add(new Node(1, 3));
+
+        adjList.get(2).add(new Node(3, 4));
+        adjList.get(3).add(new Node(2, 4));
+
+        adjList.get(2).add(new Node(4, 5));
+        adjList.get(4).add(new Node(2, 5));
+
+        adjList.get(3).add(new Node(4, 6));
+        adjList.get(4).add(new Node(3, 6));
+
+        int[] dist = new int[V + 1]; // 최단 거리 저장
+        Arrays.fill(dist, INF); // 무한대로 초기화
+        dist[1] = 0; // 시작 노드 초기화
+        boolean[] visited = new boolean[V + 1];  // 노드 방문 여부 저장
+
+        PriorityQueue<Node> pq = new PriorityQueue<>(); // 노드까지의 거리를 저장할 우선순위 큐
+        pq.offer(new Node(1, 0)); // 시작노드 값 초기화
 
         // 인접 노드의 최단 거리 갱신
-        for (int i = 0; i < n; ++i) {
-            if (!visited[i] && matrix[v][i] != Integer.MAX_VALUE) {
-                distance[i] = matrix[v][i];
-                queue.add(new Node(matrix[v][i], i));
+        while (!pq.isEmpty()) {
+            Node current = pq.poll();
+
+            if (visited[current.to]) continue;
+
+            // 방문 처리
+            visited[current.to] = true;
+
+            // 다른 노드를 거쳐가는 비용이 더 적은지 확인
+            for (Node n : adjList.get(current.to)) {
+                if (!visited[n.to] && dist[n.to] > dist[current.to] + n.weight) {
+                    dist[n.to] = dist[current.to] + n.weight;
+                    pq.offer(n);
+                }
             }
         }
 
-        while (!queue.isEmpty()) {
-            int min_index = -1;
-
-            // 노드 최소값을 꺼냄
-            Node node = queue.poll();
-            min_index = node.index;
-            visited[min_index] = true;
-
-            // 노드 최소값 탐색
-            for (int i = 0; i < n; ++i) {
-                if (!visited[i] && matrix[min_index][i] != Integer.MAX_VALUE) {
-                    if (distance[min_index] + matrix[min_index][i] < distance[i]) {
-                        distance[i] = distance[min_index] + matrix[min_index][i];
-                        queue.add(new Node(distance[i], i));
-                    }
-                }
-            }
-
-            // 결과값 출력
-            for (int i = 0; i < n; ++i) {
-                if (distance[i] == 2147483647) {
-                    System.out.print("∞ ");
-                } else {
-                    System.out.print(distance[i] + " ");
-                }
-            }
-            System.out.println("");
+        // 결과 출력
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= V; i++) {
+            sb.append(dist[i]).append(" ");
         }
+        System.out.println(sb.toString());
     }
+
 }

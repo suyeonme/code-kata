@@ -1,80 +1,90 @@
 package algorithm.dijkstra;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-class AdjacentListDijkstra {
-    private int n;           // 노드들의 수
-    private int matrix[][];    // 노드들간의 가중치
+// 인접 행렬을 사용
+public class AdjacentListDijkstra {
 
-    public AdjacentListDijkstra(int n) {
-        this.n = n;
-        matrix = new int[n][n];
+    static final int INF = 9999999; // 무한대
 
-        // 인접행렬을 무한대로 초기화
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                matrix[i][j] = Integer.MAX_VALUE;
-            }
+    static class Node implements Comparable<Node> {
+        int to, weight;
+
+        public Node(int to, int weight) {
+            this.to = to;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return this.weight - o.weight;
         }
     }
 
-    public void addNode(int v1, int v2, int weight) {
-        matrix[v1][v2] = weight;
-        matrix[v2][v1] = weight;
-    }
+    public static void main(String[] args) {
+        int V = 5;  // 정점의 수
+        int E = 6;  // 간선의 수
 
-    public void dijkstra(int v) {
-        int distance[] = new int[n];          // 최단 거리를 저장
-        boolean[] visited = new boolean[n];     // 해당 노드 방문 여부 저장
-
-        // 최단 거리 초기화
-        for (int i = 0; i < n; ++i) {
-            distance[i] = Integer.MAX_VALUE; // 무한대
+        // 인접리스트 초기화
+        ArrayList<ArrayList<Node>> adjList = new ArrayList<>();
+        for (int i = 0; i <= V; i++) {
+            adjList.add(new ArrayList<>());
         }
 
-        // 시작노드 값 초기화
-        distance[v] = 0;
-        visited[v] = true;
+        // 인접리스트 입력
+        adjList.get(5).add(new Node(1, 1));
+        adjList.get(1).add(new Node(5, 1));
 
-        // 인접 노드의 최단 거리 갱신
-        for (int i = 0; i < n; ++i) {
-            if (!visited[i] && matrix[v][i] != Integer.MAX_VALUE) {
-                distance[i] = matrix[v][i];
-            }
-        }
+        adjList.get(1).add(new Node(2, 2));
+        adjList.get(2).add(new Node(1, 2));
 
-        for (int a = 0; a < n - 1; ++a) {
-            int min = Integer.MAX_VALUE;
-            int min_index = -1;
+        adjList.get(1).add(new Node(3, 3));
+        adjList.get(3).add(new Node(1, 3));
 
-            // 노드 최소값 탐색
-            for (int i = 0; i < n; ++i) {
-                if (visited[i]) continue;
-                if (distance[i] < min) {
-                    min = distance[i];
-                    min_index = i;
+        adjList.get(2).add(new Node(3, 4));
+        adjList.get(3).add(new Node(2, 4));
+
+        adjList.get(2).add(new Node(4, 5));
+        adjList.get(4).add(new Node(2, 5));
+
+        adjList.get(3).add(new Node(4, 6));
+        adjList.get(4).add(new Node(3, 6));
+
+
+        int[] dist = new int[V + 1]; // 최단 거리 저장
+        Arrays.fill(dist, INF); // 무한대로 초기화
+        dist[1] = 0; // 시작 노드 초기화
+        boolean[] visited = new boolean[V + 1];  // 노드 방문 여부 저장
+
+        for (int i = 1; i <= V; i++) {
+            int nodeValue = Integer.MAX_VALUE;
+            int nodeIdx = 0;
+
+            // 인접 노드의 최단 거리 갱신
+            for (int j = 1; j < V + 1; j++) {
+                if (!visited[j] && dist[j] < nodeValue) {
+                    nodeValue = dist[j];
+                    nodeIdx = j;
                 }
             }
 
-            visited[min_index] = true;
+            // 방문 처리
+            visited[nodeIdx] = true;
 
-            for (int i = 0; i < n; ++i) {
-                if (!visited[i] && matrix[min_index][i] != Integer.MAX_VALUE) {
-                    if (distance[min_index] + matrix[min_index][i] < distance[i]) {
-                        distance[i] = distance[min_index] + matrix[min_index][i];
-                    }
+            // 다른 노드를 거쳐가는 비용이 더 적은지 확인
+            for (Node n : adjList.get(nodeIdx)) {
+                if (dist[n.to] > dist[nodeIdx] + n.weight) {
+                    dist[n.to] = dist[nodeIdx] + n.weight;
                 }
             }
-
-            // 결과값 출력
-//            for (int i = 0; i < n; ++i) {
-//                if (distance[i] == Integer.MAX_VALUE) System.out.print("∞ ");
-//                else System.out.print(distance[i] + " ");
-//            }
-
-
-//            System.out.println("");
         }
-        System.out.println(Arrays.toString(distance));
+
+        // 결과 출력
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= V; i++) {
+            sb.append(dist[i]).append(" ");
+        }
+        System.out.println(sb);
     }
 }
