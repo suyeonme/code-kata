@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class StronglyConnectedComponent {
-    static int MAX = 100001;
+    static final int MAX = 100001;
     static int id = 0; // 노드의 고유값
     static int[] d = new int[MAX]; // 노드의 고유값
     static boolean[] finished = new boolean[MAX]; // 현재 특정 노드에 대한 DFS가 끝났는지 여부

@@ -56,7 +56,7 @@ public class TopologySort {
             graph.add(new ArrayList<Integer>());
         }
 
-        // 방향 그래프의 모든 간선 정보를 입력 받기
+        // 방향 그래프의 모든 간선 정보를 입력 받기graph
         for (int i = 0; i < e; i++) {
             System.out.println("a");
             int a = sc.nextInt();
